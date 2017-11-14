@@ -3,7 +3,7 @@
 
   angular
     .module('app')
-    .config(configure)
+    .config(configure);
 
   configure.$inject = ['$stateProvider', '$urlRouterProvider'];
 
@@ -11,7 +11,7 @@
     $stateProvider
       .state('todo_list', {
         url: '/',
-        templateUrl: '/app/todo_list/todolist.html',
+        templateUrl: '/app/todo/todo.html',
         //controller: 'TodoListController',
         onEnter: ['$state', 'auth', function($state, auth) {
           if ( !auth.isLoggedIn() ) {
@@ -20,24 +20,24 @@
         }]
       })
       .state('login', {
-          url: '/login',
-          templateUrl: '/app/auth/auth_login.html',
-          //controller: 'AuthController',
-          onEnter: ['$state', 'auth', function($state, auth) {
+        url: '/login',
+        templateUrl: '/app/auth/auth_login.html',
+        //controller: 'AuthController',
+        onEnter: ['$state', 'auth', function($state, auth) {
           if ( auth.isLoggedIn() ) {
-              $state.go('todo_list');
+            $state.go('todo_list');
           }
-          }]
+        }]
       })
       .state('register', {
-          url: '/register',
-          templateUrl: '/app/auth/auth_register.html',
-          //controller: 'AuthController',
-          onEnter: ['$state', 'auth', function($state, auth) {
+        url: '/register',
+        templateUrl: '/app/auth/auth_register.html',
+        //controller: 'AuthController',
+        onEnter: ['$state', 'auth', function($state, auth) {
           if ( auth.isLoggedIn() ) {
-              $state.go('todo_list');
+            $state.go('todo_list');
           }
-          }]
+        }]
       });
 
     $urlRouterProvider.otherwise('/');
