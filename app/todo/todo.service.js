@@ -30,7 +30,7 @@
     function addTodo(project) {
       return $http({
         method: 'POST',
-        url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects',
+        url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects.json',
         headers: {
           'Authorization': auth.getToken()
         },
@@ -40,7 +40,7 @@
     function editTodo(project) {
       return $http({
         method: 'PUT',
-        url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects' + project.id,
+        url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects/' + project.id,
         headers: {
           'Authorization': auth.getToken()
         },
@@ -50,7 +50,7 @@
     function deleteTodo(project) {
       return $http({
         method: 'DELETE',
-        url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects' + project.id,
+        url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects/' + project.id,
         headers: {
           'Authorization': auth.getToken()
         }

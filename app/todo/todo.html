@@ -1,10 +1,16 @@
 <div ng-controller="TodoController as todo">
   <ul>
-    <li ng-repeat="project in todo.projects"> [{{ project.id }}] {{ project.name }} </li>
+    <li ng-repeat="project in todo.projects"> 
+      [{{ project.id }}] {{ project.name }}
+      <form ng-submit="todo.editProject(project)">
+        <input type="text" name="name" value="project.name" ng-model="project.name">
+        <button type="submit">Edit</button>
+      </form>
+      <button type="" ng-click="todo.deleteProject(project)">x</button>
+    </li>
   </ul>
-
-  <form ng-submit="todo.addProject(nproject)">
-    <input type="text" name="name" value="" ng-model="nproject">
+  <form ng-submit="todo.addProject(todo.newProject)">
+    <input type="text" name="name" value="" ng-model="todo.newProject.name">
     <button type="submit">Add project</button>
   </form>
 </div>

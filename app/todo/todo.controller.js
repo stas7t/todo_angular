@@ -9,8 +9,13 @@
   function TodoController(auth, todoService) {
     var vm = this;
     vm.projects = [];
+    vm.newProject = {};
+    vm.editedProject = {};
+    vm.errors = {};
+
     vm.addProject = addProject;
-    
+    vm.editProject = editProject;
+    vm.deleteProject = deleteProject;
 
     activate();
 
@@ -23,7 +28,36 @@
     }
 
     function addProject(project) {
-      return todoService.addTodo(project);
+      return todoService.addTodo(project)
+        .then(function(response) {
+          vm.projects.push(response.data);
+          vm.newProject = {};
+          vm.errors = {};
+        })
+        .catch(function(response) {
+          vm.errors = response.data;
+        });
+    }
+
+    function editProject(project) {
+      return todoService.editTodo(project)
+        .then(function() {
+          vm.editedProject = {};
+          vm.errors = {};
+        })
+        .catch(function(response) {
+          vm.errors = response.data;
+        });
+    }
+
+    function deleteProject(project) {
+      return todoService.deleteTodo(project)
+        .then(function() {
+          vm.projects.splice(vm.projects.indexOf(project), 1);
+        })
+        .catch(function(response) {
+          vm.errors = response.data;
+        });
     }
   }
 })();
