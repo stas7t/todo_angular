@@ -5,8 +5,8 @@
     .module('app')
     .controller('TodoController', TodoController);
 
-  TodoController.$inject = ['auth', 'todoService'];
-  function TodoController(auth, todoService) {
+  TodoController.$inject = ['todoService'];
+  function TodoController(todoService) {
     var vm = this;
     vm.projects = [];
     vm.newProject = {};
