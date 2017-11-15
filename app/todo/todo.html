@@ -2,11 +2,21 @@
   <ul>
     <li ng-repeat="project in todo.projects"> 
       [{{ project.id }}] {{ project.name }}
+      <a href="" class="btn btn-danger btn-sm" ng-click="todo.deleteProject(project)">&times;</a>
       <form ng-submit="todo.editProject(project)">
         <input type="text" name="name" value="project.name" ng-model="project.name">
         <button type="submit">Edit</button>
       </form>
-      <button type="" ng-click="todo.deleteProject(project)">x</button>
+
+      <div ng-controller="TaskController as taskCtrl" >
+        <ul>
+          <li ng-repeat="task in taskCtrl.tasks">
+            [{{ task.id }}] {{ task.name }} (project_id: {{taskCtrl.p_id}} - {{task.project_id}})
+            <a href="" class="btn btn-danger btn-sm" ng-click="taskCtrl.deleteTask(task)">&times;</a>
+          </li>
+        </ul>
+      </div>
+
     </li>
   </ul>
   <form ng-submit="todo.addProject(todo.newProject)">
