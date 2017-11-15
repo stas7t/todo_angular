@@ -9,8 +9,10 @@
   function TaskController($scope, taskService) {
     var vm = this;
     vm.tasks = []
-    //vm.$scope = $scope
-    vm.p_id = $scope.$parent.project.id
+    vm.projectID = $scope.$parent.project.id
+    vm.newTask = {};
+    vm.editedTask = {};
+    vm.errors = {};
 
     vm.addTask = addTask;
     vm.editTask = editTask;
@@ -21,12 +23,33 @@
     ////////////////
 
     function activate() {
-      return taskService.getTasks(vm.p_id).then(function(response) {
+      return taskService.getTasks(vm.projectID).then(function(response) {
         vm.tasks = response.data;
       });
     }
-    function addTask() { };
-    function editTask() { };
+
+    function addTask(task) {
+      return taskService.addTask(task)
+        .then(function(response) {
+          vm.tasks.push(response.data);
+          vm.newTask = {};
+          vm.errors = {};
+        })
+        .catch(function(response) {
+          vm.errors = response.data;
+        });
+    };
+
+    function editTask(task) {
+      return taskService.editTask(task)
+        .then(function() {
+          vm.editedTask = {};
+          vm.errors = {};
+        })
+        .catch(function(response) {
+          vm.errors = response.data;
+        });
+    };
 
     function deleteTask(task) {
       return taskService.deleteTask(task)
