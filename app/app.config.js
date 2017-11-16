@@ -11,7 +11,7 @@
     $stateProvider
       .state('todo_list', {
         url: '/',
-        templateUrl: '/app/todo/todo.html',
+        templateUrl: '/app/projects/project.html',
         //controller: 'TodoListController',
         onEnter: ['$state', 'auth', function($state, auth) {
           if ( !auth.isLoggedIn() ) {

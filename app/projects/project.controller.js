@@ -3,10 +3,10 @@
 
   angular
     .module('app')
-    .controller('TodoController', TodoController);
+    .controller('ProjectController', ProjectController);
 
-  TodoController.$inject = ['todoService'];
-  function TodoController(todoService) {
+  ProjectController.$inject = ['projectService'];
+  function ProjectController(projectService) {
     var vm = this;
     vm.projects = [];
     vm.newProject = {};
@@ -22,13 +22,13 @@
     ////////////////
 
     function activate() {
-      return todoService.getTodos().then(function(response) {
+      return projectService.get().then(function(response) {
         vm.projects = response.data;
       });
     }
 
     function addProject(project) {
-      return todoService.addTodo(project)
+      return projectService.create(project)
         .then(function(response) {
           vm.projects.push(response.data);
           vm.newProject = {};
@@ -40,7 +40,7 @@
     }
 
     function editProject(project) {
-      return todoService.editTodo(project)
+      return projectService.update(project)
         .then(function() {
           vm.editedProject = {};
           vm.errors = {};
@@ -51,7 +51,7 @@
     }
 
     function deleteProject(project) {
-      return todoService.deleteTodo(project)
+      return projectService.destroy(project)
         .then(function() {
           vm.projects.splice(vm.projects.indexOf(project), 1);
         })

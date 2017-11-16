@@ -3,22 +3,22 @@
 
   angular
     .module('app')
-    .factory('todoService', todoService);
+    .factory('projectService', projectService);
 
-  todoService.$inject = ['$http', 'auth'];
-  function todoService($http, auth) {
+  projectService.$inject = ['$http', 'auth'];
+  function projectService($http, auth) {
     var service = {
-      getTodos: getTodos,
-      addTodo: addTodo,
-      editTodo: editTodo,
-      deleteTodo: deleteTodo
+      get: get,
+      create: create,
+      update: update,
+      destroy: destroy
     };
     
     return service;
 
     ////////////////
 
-    function getTodos() {
+    function get() {
       return $http({
         method: 'GET',
         url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects.json',
@@ -27,7 +27,7 @@
         }
       });
     }
-    function addTodo(project) {
+    function create(project) {
       return $http({
         method: 'POST',
         url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects.json',
@@ -37,7 +37,7 @@
         data: project
       });
     }
-    function editTodo(project) {
+    function update(project) {
       return $http({
         method: 'PUT',
         url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects/' + project.id,
@@ -47,7 +47,7 @@
         data: project
       });
     }
-    function deleteTodo(project) {
+    function destroy(project) {
       return $http({
         method: 'DELETE',
         url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects/' + project.id,
