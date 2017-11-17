@@ -8,17 +8,17 @@
   taskService.$inject = ['$http', 'auth'];
   function taskService($http, auth) {
     var service = {
-      getTasks: getTasks,
-      addTask: addTask,
-      editTask: editTask,
-      deleteTask: deleteTask
+      get: get,
+      create: create,
+      update: update,
+      destroy: destroy
     };
     
     return service;
 
     ////////////////
 
-    function getTasks(project_id) {
+    function get(project_id) {
       return $http({
         method: 'GET',
         url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects/' + project_id +'/tasks.json',
@@ -27,7 +27,7 @@
         }
       });
     }
-    function addTask(project_id, task) {
+    function create(project_id, task) {
       return $http({
         method: 'POST',
         url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects/' + project_id +'/tasks.json',
@@ -37,7 +37,7 @@
         data: task
       });
     }
-    function editTask(task) {
+    function update(task) {
       return $http({
         method: 'PUT',
         url: 'https://stas7t-todo-api.herokuapp.com/api/v1/tasks/' + task.id,
@@ -47,7 +47,7 @@
         data: task
       });
     }
-    function deleteTask(task) {
+    function destroy(task) {
       return $http({
         method: 'DELETE',
         url: 'https://stas7t-todo-api.herokuapp.com/api/v1/tasks/' + task.id,

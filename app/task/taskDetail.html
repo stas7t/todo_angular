@@ -1,0 +1,5 @@
+<div class="pl-4">
+  ID: {{taskDetail.task.id}}
+  Name: <editable-field field-value="taskDetail.task.name" field-type="text" on-update="taskDetail.update('name', value)"></editable-field>
+  <a href="" class="btn btn-danger btn-sm" ng-click="taskDetail.delete()">&times;</a>
+</div>

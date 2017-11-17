@@ -1,0 +1,5 @@
+<task-detail ng-repeat="task in tasks.list | orderBy:'id'" task="task" on-update="tasks.editTask(task, prop, value)" on-delete="tasks.deleteTask(task)"></task-detail>
+<form ng-submit="tasks.addTask(tasks.newTask)">
+  <input type="text" ng-model="tasks.newTask.name">
+  <button type="submit">Add task</button>
+</form>
