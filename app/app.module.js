@@ -1,12 +1,12 @@
-(function () {
-    'use strict';
+(function (angular) {
+  'use strict';
 
-    angular.module('app', [
-        // Angular modules
+  angular.module('app', [
+    // Angular modules
 
-        // Custom modules
+    // Custom modules
 
-        // 3rd Party Modules
-        'ui.router'
-    ]);
-})();
+    // 3rd Party Modules
+    'ui.router'
+  ]);
+})(window.angular);

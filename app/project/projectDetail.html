@@ -1,0 +1,6 @@
+<hr class="my-2">
+<div>
+  ID: {{projectDetail.project.id}}
+  Name: <editable-field field-value="projectDetail.project.name" field-type="text" on-update="projectDetail.update('name', value)"></editable-field>
+  <a href="" class="btn btn-danger btn-sm" ng-click="projectDetail.delete()">&times;</a>
+</div>

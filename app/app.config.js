@@ -1,4 +1,4 @@
-(function(){
+(function(angular) {
   'use strict';
 
   angular
@@ -11,8 +11,7 @@
     $stateProvider
       .state('todo_list', {
         url: '/',
-        templateUrl: '/app/projects/project.html',
-        //controller: 'TodoListController',
+        template: '<project-list></project-list>',
         onEnter: ['$state', 'auth', function($state, auth) {
           if ( !auth.isLoggedIn() ) {
             $state.go('login');
@@ -22,7 +21,6 @@
       .state('login', {
         url: '/login',
         templateUrl: '/app/auth/auth_login.html',
-        //controller: 'AuthController',
         onEnter: ['$state', 'auth', function($state, auth) {
           if ( auth.isLoggedIn() ) {
             $state.go('todo_list');
@@ -32,7 +30,6 @@
       .state('register', {
         url: '/register',
         templateUrl: '/app/auth/auth_register.html',
-        //controller: 'AuthController',
         onEnter: ['$state', 'auth', function($state, auth) {
           if ( auth.isLoggedIn() ) {
             $state.go('todo_list');
@@ -43,4 +40,4 @@
     $urlRouterProvider.otherwise('/');
   }
 
-}());
+})(window.angular);
