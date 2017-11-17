@@ -1,0 +1,6 @@
+<comment-detail ng-repeat="comment in comments.list | orderBy:'id'" comment="comment" on-delete="comments.deleteComment(comment)"></comment-detail>
+<form ng-submit="comments.addComment(comments.newComment)">
+  <input type="text" ng-model="comments.newComment.text">
+  <input type="file" ng-model="comments.newComment.file">
+  <button type="submit">Add comment</button>
+</form>

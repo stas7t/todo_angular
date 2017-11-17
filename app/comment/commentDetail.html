@@ -1,0 +1,6 @@
+<div class="pl-4">
+  ID: {{commentDetail.comment.id}}
+  Text: {{commentDetail.comment.text}}
+  <img ng-if="commentDetail.comment.file.url" ng-src="{{commentDetail.comment.file.url}}" alt="attachment">
+  <a href="" class="btn btn-danger btn-sm" ng-click="commentDetail.delete()">&times;</a>
+</div>
