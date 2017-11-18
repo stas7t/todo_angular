@@ -2,9 +2,9 @@
   'use strict';
 
   // Usage:
-  // 
+  // <comment-detail comment="..." on-delete="..."></comment-detail>
   // Creates:
-  // 
+  // Comment detail
 
   angular
     .module('app')
@@ -24,10 +24,6 @@
     var vm = this;
 
     ////////////////
-
-    //vm.$onInit = function() { };
-    //vm.$onChanges = function(changesObj) { };
-    //vm.$onDestroy = function() { };
 
     vm.delete = function() {
       vm.onDelete(vm.comment);

@@ -2,9 +2,9 @@
   'use strict';
 
   // Usage:
-  // 
+  // <comment-form task="..." comments="..."></comment-form>
   // Creates:
-  // 
+  // Form for adding comments
 
   angular
     .module('app')
@@ -27,10 +27,6 @@
     vm.addComment = addComment;
 
     ////////////////
-
-    //vm.$onInit = function() { };
-    //vm.$onChanges = function(changesObj) { };
-    //vm.$onDestroy = function() { };
 
     function addComment(comment) {
       return commentService.create(vm.task.project_id, vm.task.id, comment)

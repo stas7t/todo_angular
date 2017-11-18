@@ -2,9 +2,9 @@
   'use strict';
 
   // Usage:
-  // 
+  // <project-list></project-list>
   // Creates:
-  // 
+  // List of projects
 
   angular
     .module('app')
@@ -32,8 +32,6 @@
         vm.list = response.data;
       });
     };
-    //vm.$onChanges = function(changesObj) { };
-    //vm.$onDestroy = function() { };
 
     function addProject(project) {
       return projectService.create(project)

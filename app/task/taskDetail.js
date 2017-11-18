@@ -2,9 +2,9 @@
   'use strict';
 
   // Usage:
-  // 
+  // <task-detail task="..." on-update="..." on-delete="..."></task-detail>
   // Creates:
-  // 
+  // Task detail
 
   angular
     .module('app')
@@ -24,10 +24,6 @@
     var vm = this;
 
     ////////////////
-
-    //vm.$onInit = function() { };
-    //vm.$onChanges = function(changesObj) { };
-    //vm.$onDestroy = function() { };
 
     vm.delete = function() {
       vm.onDelete(vm.task);

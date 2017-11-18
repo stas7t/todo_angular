@@ -2,9 +2,9 @@
   'use strict';
 
   // Usage:
-  // 
+  // <comment-list task="..."></comment-list>
   // Creates:
-  // 
+  // List of comments
 
   angular
     .module('app')
@@ -36,8 +36,6 @@
           vm.list = response.data;
         });
     };
-    //vm.$onChanges = function(changesObj) { };
-    //vm.$onDestroy = function() { };
 
     function addComment(comment) {
       return commentService.create(vm.task.project_id, vm.task.id, comment)

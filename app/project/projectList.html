@@ -1,4 +1,4 @@
-<project-detail ng-repeat="project in projects.list | orderBy:'id'" project="project" on-update="projects.editProject(project, prop, value)" on-delete="projects.deleteProject(project)"></project-detail>
+<project-detail ng-repeat="project in projects.list | orderBy:'id'" project="project" on-update="projects.editProject(project)" on-delete="projects.deleteProject(project)"></project-detail>
 <form ng-submit="projects.addProject(projects.newProject)">
   <input type="text" ng-model="projects.newProject.name" required>
   <button type="submit">Add project</button>

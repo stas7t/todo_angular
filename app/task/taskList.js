@@ -2,9 +2,9 @@
   'use strict';
 
   // Usage:
-  // 
+  // <task-list project="..."></task-list>
   // Creates:
-  // 
+  // List of tasks
 
   angular
     .module('app')
@@ -36,8 +36,6 @@
           vm.list = response.data;
         });
     };
-    //vm.$onChanges = function(changesObj) { };
-    //vm.$onDestroy = function() { };
 
     function addTask(task) {
       return taskService.create(vm.project.id, task)
