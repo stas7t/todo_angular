@@ -28,7 +28,6 @@
       });
     }
     function create(project_id, task_id, comment) {
-      console.log('service', project_id, task_id)
       return $http({
         method: 'POST',
         url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects/' + project_id + '/tasks/' + task_id +'/comments.json',

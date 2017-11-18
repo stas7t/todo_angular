@@ -1,7 +1,6 @@
 <form ng-submit="commentForm.addComment(commentForm.newComment)">
   <input type="text" ng-model="commentForm.newComment.text" required>
-  <!--input type="file" ng-model="comments.newComment.file"-->
-  <file-field target="commentForm.newComment.file"></file-field>
+  <a href="" class="btn btn-light" ng-click='commentForm.addFile()'>+</a>
   <button type="submit">Add comment</button>
 </form>
-<img ng-if="commentForm.newComment.file" ng-src="{{commentForm.newComment.file}}" alt="" height="100" width="100">
+<img ng-if="commentForm.newComment.file" ng-src="{{commentForm.newComment.file}}" alt="image-preview" height="100" width="100">
