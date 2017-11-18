@@ -13,7 +13,6 @@
       controller: CommentListController,
       controllerAs: 'comments',
       bindings: {
-        //project: '<',
         task: '<'
       },
     });
@@ -41,7 +40,6 @@
     //vm.$onDestroy = function() { };
 
     function addComment(comment) {
-      console.log(vm.task.project_id, vm.task.id)
       return commentService.create(vm.task.project_id, vm.task.id, comment)
         .then(function(response) {
           vm.list.push(response.data);
