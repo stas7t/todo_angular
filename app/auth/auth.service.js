@@ -1,4 +1,4 @@
-(function() {
+(function(angular) {
   'use strict';
 
   angular
@@ -19,11 +19,11 @@
 
     function saveToken(token) {
       $window.localStorage['auth-token'] = token;
-    };
+    }
 
     function getToken() {
       return $window.localStorage['auth-token'];
-    };
+    }
 
     function isLoggedIn() {
       var token = getToken();
@@ -34,7 +34,7 @@
       } else {
         return false;
       }
-    };
+    }
 
     function currentUser() {
       if (isLoggedIn()) {
@@ -43,7 +43,7 @@
 
         return payload;
       }
-    };
+    }
 
     function register(user) {
       return $http.post('https://stas7t-todo-api.herokuapp.com/api/v1/auth/register', user)
@@ -54,7 +54,7 @@
         .catch(function(response) {
           console.log(response.data.error);
         });
-    };
+    }
 
     function logIn(user) {
       return $http.post('https://stas7t-todo-api.herokuapp.com/api/v1/auth/login', user)
@@ -65,11 +65,10 @@
         .catch(function(response) {
           console.log(response.data.error);
         });
-    };
+    }
 
     function logOut() {
       $window.localStorage.removeItem('auth-token');
-    };
-
+    }
   }
-})();
+})(window.angular);
