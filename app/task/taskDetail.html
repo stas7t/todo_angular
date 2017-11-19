@@ -2,5 +2,6 @@
   ID: {{taskDetail.task.id}}
   Name: <editable-field field-value="taskDetail.task.name" field-type="text" on-update="taskDetail.update('name', value)"></editable-field>
   <a href="" class="btn btn-danger btn-sm" ng-click="taskDetail.delete()">&times;</a>
+  <deadline-form task="taskDetail.task" on-create="" on-update=""></deadline-form>
 </div>
 <comment-list task="taskDetail.task"></comment-list>

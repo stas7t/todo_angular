@@ -1,0 +1,7 @@
+{{deadlineForm.date | date:"dd/MM/yyyy"}} {{deadlineForm.time | date:"HH:mm"}}
+<form>
+  <input type="date" name="inputDate" ng-model="deadlineForm.date">
+  <input type="time" name="inputTime" ng-model="deadlineForm.time">
+  <button type="submit">Save</button>
+  <button type="reset">Cancel</button>
+</form>
