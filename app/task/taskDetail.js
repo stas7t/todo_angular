@@ -22,16 +22,38 @@
   TaskDetailController.$inject = [];
   function TaskDetailController() {
     var vm = this;
+    vm.editMode = false;
 
     ////////////////
+
+    vm.$onInit = function() {
+      // Make a copy of the initial value to be able to reset it later
+      //vm.fieldValueCopy = vm.fieldValue;
+      vm.taskCopy = {'name': vm.task.name};
+    };
+
+    vm.edit = function () {
+      vm.editMode = !vm.editMode;
+    };
+
+    vm.save = function() {
+      //vm.update('name', vm.task.name);
+      vm.taskCopy.name = vm.task.name;
+      vm.editMode = !vm.editMode;
+      vm.onUpdate(vm.task);
+    };
+
+    vm.reset = function() {
+      vm.task.name = vm.taskCopy.name;
+      vm.editMode = !vm.editMode;
+    };
 
     vm.delete = function() {
       vm.onDelete(vm.task);
     };
 
-    vm.update = function(prop, value) {
-      vm.task[prop] = value;
-      vm.onUpdate(vm.task, prop, value);
+    vm.update = function() {
+      vm.onUpdate(vm.task);
     };
   }
 })(window.angular);

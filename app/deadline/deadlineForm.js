@@ -2,9 +2,9 @@
   'use strict';
 
   // Usage:
-  // <deadline-form task="..." on-create="..." on-update="..."></deadline-form>
+  // <deadline-form deadline="..." project_id="..." task_id="..."></deadline-form>
   // Creates:
-  // Task detail
+  // Deadline form
 
   angular
     .module('app')
@@ -13,26 +13,41 @@
       controller: DeadlineFormController,
       controllerAs: 'deadlineForm',
       bindings: {
-        task: '=',
-        onCreate: '&',
-        onUpdate: '&'
+        deadline: '<',
+        projectId: '<',
+        taskId: '<',
       },
     });
 
-  DeadlineFormController.$inject = [];
-  function DeadlineFormController() {
+  DeadlineFormController.$inject = ['deadlineService'];
+  function DeadlineFormController(deadlineService) {
     var vm = this;
+    vm.deadlineP = {};
 
     ////////////////
-    /*
-    vm.delete = function() {
-      vm.onDelete(vm.task);
+
+    vm.$onInit = function() {
+      // Make a copy of the initial value to be able to reset it later
+      if (vm.deadline) {
+        var date = new Date(Date.parse(vm.deadline.date));
+        var time = new Date(Date.parse(vm.deadline.time));
+        vm.deadlineP = {'date': date, 'time': time, 'id': vm.deadline.id};
+        vm.deadlineCopy = {'date': vm.deadline.date, 'time': vm.deadline.time};
+      }
     };
 
-    vm.update = function(prop, value) {
-      vm.task[prop] = value;
-      vm.onUpdate(vm.task, prop, value);
+    vm.save = function() {
+      if (vm.deadline) {
+        deadlineService.update(vm.deadlineP);
+      } else {
+        deadlineService.create(vm.projectId, vm.taskId, vm.deadlineP);
+      }
     };
-    */
+
+    vm.reset = function() {
+      vm.deadline.date = vm.deadlineCopy.date;
+      vm.deadline.time = vm.deadlineCopy.time;
+      vm.deadlineP = {};
+    };
   }
 })(window.angular);

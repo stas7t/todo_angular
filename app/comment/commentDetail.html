@@ -1,6 +1,10 @@
-<div class="pl-4">
-  ID: {{commentDetail.comment.id}}
-  Text: {{commentDetail.comment.text}}
-  <img ng-if="commentDetail.comment.file.url" ng-src="{{commentDetail.comment.file.url}}" alt="attachment">
-  <a href="" class="btn btn-danger btn-sm" ng-click="commentDetail.delete()">&times;</a>
-</div>
+<section>
+  <div class="row mx-0">
+    <div class="col py-2">
+      <span class="text-smaller text-secondary pr-2">{{commentDetail.comment.created_at | date: "dd/MM/yyyy"}}</span>
+      <a href="" ng-click="commentDetail.delete()"><i class="fa fa-trash-o" aria-hidden="true"></i></a><br>
+      <span>{{commentDetail.comment.text}}</span><br>
+      <img class="mw-100" ng-if="commentDetail.comment.file.url" ng-src="{{commentDetail.comment.file.url}}" alt="attachment">
+    </div>
+  </div>
+</section>

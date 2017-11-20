@@ -22,16 +22,39 @@
   ProjectDetailController.$inject = [];
   function ProjectDetailController() {
     var vm = this;
+    vm.editMode = false;
 
     ////////////////
+
+    vm.$onInit = function() {
+      // Make a copy of the initial value to be able to reset it later
+      //vm.fieldValueCopy = vm.fieldValue;
+      vm.projectCopy = {'name': vm.project.name};
+    };
+
+    vm.edit = function () {
+      vm.editMode = !vm.editMode;
+    };
+
+    vm.save = function() {
+      //vm.update('name', vm.project.name);
+      vm.projectCopy.name = vm.project.name;
+      vm.editMode = !vm.editMode;
+      vm.onUpdate(vm.project);
+    };
+
+    vm.reset = function() {
+      vm.project.name = vm.projectCopy.name;
+      vm.editMode = !vm.editMode;
+    };
 
     vm.delete = function() {
       vm.onDelete(vm.project);
     };
 
-    vm.update = function(prop, value) {
+    /*vm.update = function(prop, value) {
       vm.project[prop] = value;
       vm.onUpdate(vm.project);
-    };
+    };*/
   }
 })(window.angular);

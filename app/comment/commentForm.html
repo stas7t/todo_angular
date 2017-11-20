@@ -1,6 +1,11 @@
 <form ng-submit="commentForm.addComment(commentForm.newComment)">
-  <input type="text" ng-model="commentForm.newComment.text" required>
-  <a href="" class="btn btn-light" ng-click='commentForm.addFile()'>+</a>
-  <button type="submit">Add comment</button>
+  <div class="form-group position-relative">
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ng-model="commentForm.newComment.text" required></textarea>
+    <a href="" class="add-file" ng-click="commentForm.addFile()"><i class="fa fa-paperclip fa-lg" aria-hidden="true"></i></a>
+  </div>
+  <img ng-if="commentForm.newComment.file" ng-src="{{commentForm.newComment.file}}" alt="image-preview" height="100" width="100">
+  <div class="form-group pull-right">
+    <button class="btn btn-primary" type="submit">Save</button>
+    <button class="btn btn-ligth" type="button" data-dismiss="modal">Cancel</button>
+  </div>
 </form>
-<img ng-if="commentForm.newComment.file" ng-src="{{commentForm.newComment.file}}" alt="image-preview" height="100" width="100">

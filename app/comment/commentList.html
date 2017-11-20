@@ -1,2 +1,6 @@
-<comment-form task="comments.task" comments="comments.list"></comment-form>
+<div style="border-bottom: 1px solid #e9ecef; padding: 15px 15px 50px 15px;">
+  <comment-form task="comments.task" comments="comments.list"></comment-form>
+</div>
+<div class="modal-body">
 <comment-detail ng-repeat="comment in comments.list | orderBy: 'id' : true" comment="comment" on-delete="comments.deleteComment(comment)"></comment-detail>
+</div>

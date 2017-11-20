@@ -30,10 +30,30 @@
     <script src="app/comment/comment.service.js"></script>
     <script src="app/deadline/deadlineForm.js"></script>
     <script src="app/deadline/deadline.service.js"></script>
-    <script src="app/components/editableField.js"></script>
+    <script src="app/utils/autofocus.directive.js"></script>
   </head>
   <body ng-app="app">
-    <h1>Simple ToDo List</h1>
-    <ui-view></ui-view>
+    <header>
+      <nav class="navbar navbar-light bg-light justify-content-between" ng-controller="AuthController as auth">
+        <a class="navbar-brand" href="">
+          <img src="https://s3.eu-central-1.amazonaws.com/stas7t-todo-api/logo/list.png" alt="logo-image" height="50" width="50">
+        </a>
+        <span class="navbar-text h3 text-dark">
+          Simple ToDO List
+        </span>
+        <span>
+          <a href="" class="btn btn-light btn-lg pull-right text-secondary" ng-click="auth.logOut()" ng-if="auth.isLoggedIn()"><i class="fa fa-sign-out fa-lg" aria-hidden="true"></i></a>
+        </span>
+      </nav>
+    </header>
+    <main>
+      <div class="container">
+        <div class="row justify-content-center mt-40">
+          <div class="col-sm-12 col-md-9 col-lg-6">
+            <ui-view></ui-view>
+          </div>
+        </div>
+      </div>
+    </main>
   </body>
 </html>

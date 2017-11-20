@@ -1,0 +1,67 @@
+.mt-40 {
+  margin-top: 40px !important;
+}
+
+.mt-minus-1 {
+  margin-top: -1px !important;
+}
+
+i {
+  color: grey
+}
+
+.nodecor:hover {
+  text-decoration: none;
+}
+
+.project {
+  border: 1px solid lightgrey;
+}
+
+.project-actions {
+  visibility: hidden;
+}
+
+div.project:hover > div.project-actions {
+  visibility: visible;
+}
+
+.project:hover {
+  background-color: lavender;
+}
+
+.task {
+  border: 1px solid lightgrey;
+  margin: -1px 0 0 -1px;
+}
+
+.task-actions {
+  visibility: hidden;
+}
+
+div.task:hover > div.task-actions {
+  visibility: visible;
+}
+
+.task-completed {
+  color: grey;
+  text-decoration: line-through;
+}
+
+.text-smaller {
+  font-size: smaller;
+}
+
+.deadline {
+  color: green;
+}
+
+.deadline-expired {
+  color: red;
+}
+
+.add-file {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}

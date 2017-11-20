@@ -1,9 +1,0 @@
-<form>
-  <span ng-switch="$ctrl.editMode">
-    <input ng-switch-when="true" type="{{$ctrl.fieldType}}" ng-model="$ctrl.fieldValue">
-    <span ng-switch-default>{{$ctrl.fieldValue}}</span>
-  </span>
-  <button ng-if="!$ctrl.editMode" ng-click="$ctrl.handleModeChange()">Edit</button>
-  <button ng-if="$ctrl.editMode" ng-click="$ctrl.handleModeChange()" type="submit">Save</button>
-  <button ng-if="$ctrl.editMode" ng-click="$ctrl.reset()">cancel</button>
-</form>
