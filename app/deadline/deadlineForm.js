@@ -33,6 +33,11 @@
         var time = new Date(Date.parse(vm.deadline.time));
         vm.deadlineP = {'date': date, 'time': time, 'id': vm.deadline.id};
         vm.deadlineCopy = {'date': vm.deadline.date, 'time': vm.deadline.time};
+      } else {
+        var date1 = new Date();
+        var initial_time = new Date(12.5*60*1000*60);
+        var time1 = new Date(Date.parse(initial_time));
+        vm.deadlineP = {'date': date1, 'time': time1};
       }
     };
 
@@ -45,9 +50,12 @@
     };
 
     vm.reset = function() {
-      vm.deadline.date = vm.deadlineCopy.date;
-      vm.deadline.time = vm.deadlineCopy.time;
+      if (vm.deadline) {
+        vm.deadline.date = vm.deadlineCopy.date;
+        vm.deadline.time = vm.deadlineCopy.time;
+      }
       vm.deadlineP = {};
+      vm.$onInit();
     };
   }
 })(window.angular);
