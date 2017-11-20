@@ -24,6 +24,9 @@
       auth.register(user)
         .then(function() {
           $state.go('todo_list');
+        })
+        .catch(function(response) {
+          vm.error = response.data;
         });
     }
 
@@ -31,6 +34,9 @@
       auth.logIn(user)
         .then(function() {
           $state.go('todo_list');
+        })
+        .catch(function(response) {
+          vm.error = response.data.error.user_authentication.join(' ');
         });
     }
 

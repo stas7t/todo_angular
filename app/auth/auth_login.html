@@ -1,4 +1,7 @@
 <div ng-controller="AuthController as auth">
+  <div ng-if="auth.error" class="alert alert-danger" role="alert">
+    {{ auth.error }}
+  </div>
   <h4>Sign In</h4>
   <form ng-submit="auth.logIn(auth.user)">
     <div class="form-group">

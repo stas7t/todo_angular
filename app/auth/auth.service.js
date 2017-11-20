@@ -50,9 +50,6 @@
         .then(function(response) {
           saveToken(response.data.auth_token);
           console.info(response.data.message);
-        })
-        .catch(function(response) {
-          console.log(response.data.error);
         });
     }
 
@@ -61,9 +58,6 @@
         .then(function(response) {
           saveToken(response.data.auth_token);
           console.info(response.data.message);
-        })
-        .catch(function(response) {
-          console.log(response.data.error);
         });
     }
 
