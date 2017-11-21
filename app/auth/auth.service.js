@@ -5,8 +5,8 @@
     .module('app')
     .service('auth', auth);
 
-  auth.$inject = ['$http', '$window'];
-  function auth($http, $window) {
+  auth.$inject = ['$http', '$window', 'BASE_URL'];
+  function auth($http, $window, BASE_URL) {
     this.saveToken = saveToken;
     this.getToken = getToken;
     this.isLoggedIn = isLoggedIn;
@@ -46,7 +46,7 @@
     }
 
     function register(user) {
-      return $http.post('https://stas7t-todo-api.herokuapp.com/api/v1/auth/register', user)
+      return $http.post( BASE_URL + 'auth/register', user)
         .then(function(response) {
           saveToken(response.data.auth_token);
           console.info(response.data.message);
@@ -54,7 +54,7 @@
     }
 
     function logIn(user) {
-      return $http.post('https://stas7t-todo-api.herokuapp.com/api/v1/auth/login', user)
+      return $http.post( BASE_URL + 'auth/login', user)
         .then(function(response) {
           saveToken(response.data.auth_token);
           console.info(response.data.message);

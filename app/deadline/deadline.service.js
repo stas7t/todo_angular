@@ -5,8 +5,8 @@
     .module('app')
     .factory('deadlineService', deadlineService);
 
-  deadlineService.$inject = ['$http', 'auth'];
-  function deadlineService($http, auth) {
+  deadlineService.$inject = ['$http', 'auth', 'BASE_URL'];
+  function deadlineService($http, auth, BASE_URL) {
     var service = {
       create: create,
       update: update,
@@ -20,7 +20,7 @@
       console.log("Create ", project_id, task_id, deadline);
       return $http({
         method: 'POST',
-        url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects/' + project_id + '/tasks/' + task_id +'/deadlines.json',
+        url: BASE_URL + 'projects/' + project_id + '/tasks/' + task_id +'/deadlines.json',
         headers: {
           'Authorization': auth.getToken()
         },
@@ -31,7 +31,7 @@
       console.log("Update ", deadline);
       return $http({
         method: 'PUT',
-        url: 'https://stas7t-todo-api.herokuapp.com/api/v1/deadlines/' + deadline.id,
+        url: BASE_URL + 'deadlines/' + deadline.id,
         headers: {
           'Authorization': auth.getToken()
         },

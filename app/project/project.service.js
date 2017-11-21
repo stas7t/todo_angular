@@ -5,8 +5,8 @@
     .module('app')
     .factory('projectService', projectService);
 
-  projectService.$inject = ['$http', 'auth'];
-  function projectService($http, auth) {
+  projectService.$inject = ['$http', 'auth', 'BASE_URL'];
+  function projectService($http, auth, BASE_URL) {
     var service = {
       get: get,
       create: create,
@@ -21,7 +21,7 @@
     function get() {
       return $http({
         method: 'GET',
-        url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects.json',
+        url:  BASE_URL + 'projects.json',
         headers: {
           'Authorization': auth.getToken()
         }
@@ -30,7 +30,7 @@
     function create(project) {
       return $http({
         method: 'POST',
-        url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects.json',
+        url:  BASE_URL + 'projects.json',
         headers: {
           'Authorization': auth.getToken()
         },
@@ -40,7 +40,7 @@
     function update(project) {
       return $http({
         method: 'PUT',
-        url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects/' + project.id,
+        url:  BASE_URL + 'projects/' + project.id,
         headers: {
           'Authorization': auth.getToken()
         },
@@ -50,7 +50,7 @@
     function destroy(project) {
       return $http({
         method: 'DELETE',
-        url: 'https://stas7t-todo-api.herokuapp.com/api/v1/projects/' + project.id,
+        url:  BASE_URL + 'projects/' + project.id,
         headers: {
           'Authorization': auth.getToken()
         }
