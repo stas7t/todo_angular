@@ -68,6 +68,13 @@ div.task:hover > div.task-actions {
   color: red;
 }
 
+.deadline-form {
+  z-index: 1;
+  background-color: white;
+  border: 1px solid lightgrey;
+  /*margin-left: 50%*/
+}
+
 .add-file {
   position: absolute;
   bottom: 10px;

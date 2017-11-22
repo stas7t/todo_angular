@@ -21,7 +21,8 @@
     
     function link(scope, element, attrs) {
       scope.isLoading = function () {
-        return $http.pendingRequests.length > 1;
+        console.log($http.pendingRequests);
+        return $http.pendingRequests.length > 0;
       };
 
       scope.$watch(scope.isLoading, function (v) {

@@ -23,6 +23,7 @@
   function TaskDetailController() {
     var vm = this;
     vm.editMode = false;
+    vm.deadlineMode = false;
 
     ////////////////
 
@@ -34,6 +35,10 @@
 
     vm.edit = function () {
       vm.editMode = !vm.editMode;
+    };
+
+    vm.setDeadline = function () {
+      vm.deadlineMode = !vm.deadlineMode;
     };
 
     vm.save = function() {

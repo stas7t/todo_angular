@@ -20,7 +20,8 @@
     <div class="p-2 task-actions">
       {{ taskDetail.task.comments.length }} 
       <a href="" data-toggle="modal" data-target="#commentsModal-{{taskDetail.task.id}}"><i class="fa fa-comment fa-lg" aria-hidden="true"></i></a>
-      <a href="" data-toggle="modal" data-target="#deadlineModal-{{taskDetail.task.id}}"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></a>
+      <!--<a href="" data-toggle="modal" data-target="#deadlineModal-{{taskDetail.task.id}}"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></a>-->
+      <a href="" ng-click="taskDetail.setDeadline()"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></a>
       <a href="" ng-click="taskDetail.edit()"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
       <a href="" ng-click="taskDetail.delete()"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a>
     </div>
@@ -28,6 +29,9 @@
       x
       <deadline-form deadline="taskDetail.task.deadline" project-id="taskDetail.task.project_id" task-id="taskDetail.task.id"></deadline-form>
     </div-->
+    <div class="position-absolute p-2 deadline-form" ng-if="taskDetail.deadlineMode">
+      <deadline-form deadline="taskDetail.task.deadline" project-id="taskDetail.task.project_id" task-id="taskDetail.task.id"></deadline-form>
+    </div>
   </div>
 
   <form ng-switch-when="true" ng-submit="taskDetail.save()" name="editTask">
