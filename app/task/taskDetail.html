@@ -1,6 +1,6 @@
 <section ng-switch="taskDetail.editMode">
   <div class="row task mx-0" ng-switch-default>
-    <div class="pl-3 pr-2 py-2 task-actions">
+    <div class="px-2 py-1 task-actions">
       <div>
         <a href=""><i class="fa fa-long-arrow-up" aria-hidden="true"></i></a>
       </div>
@@ -8,9 +8,11 @@
         <a href=""><i class="fa fa-long-arrow-down" aria-hidden="true"></i></a>
       </div>
     </div>
-    <div class="col py-2">
+    <div class="px-1 py-2">
+      <input type="checkbox" ng-model="taskDetail.task.completed" ng-change="taskDetail.update()">
+    </div>
+    <div class="col px-1 py-2">
       <div>
-        <input type="checkbox" ng-model="taskDetail.task.completed" ng-change="taskDetail.update()">
         <span ng-class="{'task-completed' : taskDetail.task.completed}">{{ taskDetail.task.name }}</span>
       </div>
       <div class="deadline text-smaller" ng-if="taskDetail.task.deadline">{{ taskDetail.task.deadline.date | date: "dd/MM/yyyy" }} {{ taskDetail.task.deadline.time | date: "HH:mm" }}</div>
@@ -22,6 +24,10 @@
       <a href="" ng-click="taskDetail.edit()"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
       <a href="" ng-click="taskDetail.delete()"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a>
     </div>
+    <!--div class="pull-rigth"  style="position: absolute; background-color: red; border: 1px solid green; left:100%;">
+      x
+      <deadline-form deadline="taskDetail.task.deadline" project-id="taskDetail.task.project_id" task-id="taskDetail.task.id"></deadline-form>
+    </div-->
   </div>
 
   <form ng-switch-when="true" ng-submit="taskDetail.save()" name="editTask">
@@ -46,7 +52,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <deadline-form deadline="taskDetail.task.deadline" project-id="taskDetail.task.project_id" task-id="taskDetail.task.id"></deadline-form>
+        <deadline-form deadline="taskDetail.task.deadline" project-id="taskDetail.task.project_id" task-id="taskDetail.task.id" on-change="taskDetail.change()"></deadline-form>
       </div>
     </div>
   </div>

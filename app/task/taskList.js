@@ -24,6 +24,7 @@
     vm.newTask = {};
     vm.errors = {};
 
+    vm.getTasks = getTasks;
     vm.addTask = addTask;
     vm.editTask = editTask;
     vm.deleteTask = deleteTask;
@@ -31,11 +32,15 @@
     ////////////////
 
     vm.$onInit = function() {
+      vm.getTasks();
+    };
+
+    function getTasks() {
       return taskService.get(vm.project.id)
         .then(function(response) {
           vm.list = response.data;
         });
-    };
+    }
 
     function addTask(task) {
       return taskService.create(vm.project.id, task)

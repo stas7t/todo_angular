@@ -1,11 +1,16 @@
-{{deadlineForm.date | date:"dd/MM/yyyy"}} {{deadlineForm.time | date:"HH:mm"}}
 <form ng-submit="deadlineForm.save()">
-  <div class="form-group">
-    <input type="date" class="form-control" name="inputDate" ng-model="deadlineForm.deadlineP.date">
-    <input type="time" class="form-control" name="inputTime" ng-model="deadlineForm.deadlineP.time">
-  </div>
-  <div class="form-group">
-    <button class="btn btn-success" type="submit">Save</button>
-    <button class="btn btn-ligth" type="button" ng-click="deadlineForm.reset()">Cancel</button>
+  <div class="form-row">
+    <div class="form-group col">
+      <label >Date</label>
+      <input type="date" class="form-control" name="inputDate" ng-model="deadlineForm.deadlineP.date">
+    </div>
+    <div class="form-group col">
+      <label >Time</label>
+      <input type="time" class="form-control" name="inputTime" ng-model="deadlineForm.deadlineP.time">
+    </div>
+    <div class="form-group col-12">
+      <button class="btn btn-primary" type="submit">Save</button>
+      <button class="btn btn-ligth" type="button" ng-click="deadlineForm.reset()">Cancel</button>
+    </div>
   </div>
 </form>

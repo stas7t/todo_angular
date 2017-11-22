@@ -19,8 +19,8 @@
       },
     });
 
-  DeadlineFormController.$inject = ['deadlineService'];
-  function DeadlineFormController(deadlineService) {
+  DeadlineFormController.$inject = ['moment', 'deadlineService'];
+  function DeadlineFormController(moment, deadlineService) {
     var vm = this;
     vm.deadlineP = {};
 
@@ -28,6 +28,7 @@
 
     vm.$onInit = function() {
       // Make a copy of the initial value to be able to reset it later
+      console.log('moment test' , moment().get('year'))
       if (vm.deadline) {
         var date = new Date(Date.parse(vm.deadline.date));
         var time = new Date(Date.parse(vm.deadline.time));

@@ -6,6 +6,10 @@
   margin-top: -1px !important;
 }
 
+nav {
+  background-color: #E1E7F3;
+}
+
 i {
   color: grey
 }
@@ -27,7 +31,11 @@ div.project:hover > div.project-actions {
 }
 
 .project:hover {
-  background-color: lavender;
+  background-color: #f3f3f3;
+}
+
+.project-show-tasks {
+  background-color: #E1E7F3;
 }
 
 .task {

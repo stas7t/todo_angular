@@ -1,11 +1,11 @@
 <section class="mb-2" ng-switch="projectDetail.editMode">
   <div class="container " ng-switch-default>
-    <div class="row project" >
-      <div class="col py-2">
+    <div class="row project" ng-class="{'project-show-tasks': projectDetail.showTasks}">
+      <div class="col py-2" >
         <a data-toggle="collapse" href="#collapseTasks-{{projectDetail.project.id}}" aria-expanded="true" aria-controls="collapseTasks-{{ projectDetail.project.id }}" class="nodecor">
-          <i class="fa fa-caret-down fa-lg" aria-hidden="true"></i>
+          <i class="fa fa-caret-right fa-lg" ng-class="{'fa-rotate-90': projectDetail.showTasks}" ng-click="projectDetail.toggleTasksView()" aria-hidden="true"></i>
         </a>
-        <span class="text-secondary font-weight-bold">{{ projectDetail.project.name }}</span>
+        <span class="pl-2 text-secondary font-weight-bold">{{ projectDetail.project.name }}</span>
       </div>
       <div class="p-2 project-actions">
         <a href="" ng-click="projectDetail.edit()"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>

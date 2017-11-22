@@ -23,6 +23,7 @@
   function ProjectDetailController() {
     var vm = this;
     vm.editMode = false;
+    vm.showTasks = false;
 
     ////////////////
 
@@ -30,6 +31,10 @@
       // Make a copy of the initial value to be able to reset it later
       //vm.fieldValueCopy = vm.fieldValue;
       vm.projectCopy = {'name': vm.project.name};
+    };
+
+    vm.toggleTasksView = function () {
+      vm.showTasks = !vm.showTasks;
     };
 
     vm.edit = function () {
