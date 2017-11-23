@@ -17,7 +17,6 @@
     ////////////////
 
     function create(project_id, task_id, deadline) {
-      console.log("Create ", project_id, task_id, deadline);
       return $http({
         method: 'POST',
         url: BASE_URL + 'projects/' + project_id + '/tasks/' + task_id +'/deadlines.json',
@@ -28,7 +27,6 @@
       });
     }
     function update(deadline) {
-      console.log("Update ", deadline);
       return $http({
         method: 'PUT',
         url: BASE_URL + 'deadlines/' + deadline.id,

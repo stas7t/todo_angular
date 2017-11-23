@@ -4,8 +4,8 @@
       <div class="col py-2" >
         <a data-toggle="collapse" href="#collapseTasks-{{projectDetail.project.id}}" aria-expanded="true" aria-controls="collapseTasks-{{ projectDetail.project.id }}" class="nodecor">
           <i class="fa fa-caret-right fa-lg" ng-class="{'fa-rotate-90': projectDetail.showTasks}" ng-click="projectDetail.toggleTasksView()" aria-hidden="true"></i>
+          <span class="pl-2 text-secondary font-weight-bold" ng-click="projectDetail.toggleTasksView()">{{ projectDetail.project.name }}</span>
         </a>
-        <span class="pl-2 text-secondary font-weight-bold">{{ projectDetail.project.name }}</span>
       </div>
       <div class="p-2 project-actions">
         <a href="" ng-click="projectDetail.edit()"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>

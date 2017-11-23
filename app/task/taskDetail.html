@@ -13,24 +13,46 @@
     </div>
     <div class="col px-1 py-2">
       <div>
-        <span ng-class="{'task-completed' : taskDetail.task.completed}">{{ taskDetail.task.name }}</span>
+        <span ng-class="{'task-completed': taskDetail.task.completed}">{{ taskDetail.task.name }}</span>
       </div>
-      <div class="deadline text-smaller" ng-if="taskDetail.task.deadline">{{ taskDetail.task.deadline.date | date: "dd/MM/yyyy" }} {{ taskDetail.task.deadline.time | date: "HH:mm" }}</div>
+      <div class="deadline text-smaller" ng-class="{'deadline-expired': taskDetail.deadlineAlert()}" ng-hide="taskDetail.task.completed" ng-if="taskDetail.task.deadline">
+        {{ taskDetail.task.deadline.date | date: "dd/MM/yyyy" }} {{ taskDetail.task.deadline.time | date: "HH:mm" }}
+      </div>
+
+      <div class="position-absolute deadline-form" ng-if="taskDetail.deadlineMode">
+          <div class="modal-header">
+            <h5 class="modal-title">Deadline</h5>
+            <button type="button" class="close" ng-click="taskDetail.reset('deadline')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="p-2">
+            <form ng-submit="taskDetail.setDeadline()">
+                <div class="form-row">
+                  <div class="form-group col">
+                    <label >Date</label>
+                    <input type="date" class="form-control" name="inputDate" ng-model="taskDetail.date">
+                  </div>
+                  <div class="form-group col">
+                    <label >Time</label>
+                    <input type="time" class="form-control" name="inputTime" ng-model="taskDetail.time">
+                  </div>
+                  <div class="form-group col-12">
+                    <button class="btn btn-primary" type="submit">Save</button>
+                    <button class="btn btn-ligth" type="button" ng-click="taskDetail.reset('deadline')">Cancel</button>
+                  </div>
+                </div>
+              </form>
+          </div>
+      </div>
+
     </div>
     <div class="p-2 task-actions">
-      {{ taskDetail.task.comments.length }} 
+      <span> {{ taskDetail.commentsNumber() }} </span>
       <a href="" data-toggle="modal" data-target="#commentsModal-{{taskDetail.task.id}}"><i class="fa fa-comment fa-lg" aria-hidden="true"></i></a>
-      <!--<a href="" data-toggle="modal" data-target="#deadlineModal-{{taskDetail.task.id}}"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></a>-->
-      <a href="" ng-click="taskDetail.setDeadline()"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></a>
-      <a href="" ng-click="taskDetail.edit()"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+      <a href="" ng-click="taskDetail.edit('deadline')"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></a>
+      <a href="" ng-click="taskDetail.edit('name')"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
       <a href="" ng-click="taskDetail.delete()"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a>
-    </div>
-    <!--div class="pull-rigth"  style="position: absolute; background-color: red; border: 1px solid green; left:100%;">
-      x
-      <deadline-form deadline="taskDetail.task.deadline" project-id="taskDetail.task.project_id" task-id="taskDetail.task.id"></deadline-form>
-    </div-->
-    <div class="position-absolute p-2 deadline-form" ng-if="taskDetail.deadlineMode">
-      <deadline-form deadline="taskDetail.task.deadline" project-id="taskDetail.task.project_id" task-id="taskDetail.task.id"></deadline-form>
     </div>
   </div>
 
@@ -40,40 +62,22 @@
     </div>
     <div class="form-group">
       <button class="btn btn-success" type="submit">Save</button>
-      <button class="btn btn-light" type="button" ng-click="taskDetail.reset()">Cancel</button>
+      <button class="btn btn-light" type="button" ng-click="taskDetail.reset('name')">Cancel</button>
     </div>
   </form>
 </section>
 
 <!-- Modal -->
-<div class="modal fade" id="deadlineModal-{{taskDetail.task.id}}" tabindex="-1" role="dialog" aria-labelledby="deadlineModalLabel" aria-hidden="true">
+<div class="modal fade" id="commentsModal-{{taskDetail.task.id}}" tabindex="-1" role="dialog" aria-labelledby="commentsModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="deadlineModalLabel">Deadline</h5>
+        <h5 class="modal-title" id="commentsModalLabel">Add comment</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <deadline-form deadline="taskDetail.task.deadline" project-id="taskDetail.task.project_id" task-id="taskDetail.task.id" on-change="taskDetail.change()"></deadline-form>
-      </div>
+      <comment-list task="taskDetail.task"></comment-list>
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="commentsModal-{{taskDetail.task.id}}" tabindex="-1" role="dialog" aria-labelledby="commentsModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="commentsModalLabel">Add comment</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-
-        <comment-list task="taskDetail.task"></comment-list>
-
-      </div>
-    </div>
-  </div>

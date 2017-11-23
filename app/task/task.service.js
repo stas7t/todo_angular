@@ -11,7 +11,8 @@
       get: get,
       create: create,
       update: update,
-      destroy: destroy
+      destroy: destroy,
+      getTask: getTask
     };
     
     return service;
@@ -51,6 +52,15 @@
       return $http({
         method: 'DELETE',
         url:  BASE_URL + 'tasks/' + task.id,
+        headers: {
+          'Authorization': auth.getToken()
+        }
+      });
+    }
+    function getTask(task_id) {
+      return $http({
+        method: 'GET',
+        url: BASE_URL + 'tasks/' + task_id + '.json',
         headers: {
           'Authorization': auth.getToken()
         }
