@@ -86,7 +86,7 @@
     };
 
     vm.deadlineAlert = function () {
-      return moment().diff(vm.date, 'days') >= 0;
+      return moment().diff(vm.date, 'hours') >= 0;
     };
 
     vm.save = function() {
