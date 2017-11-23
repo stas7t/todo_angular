@@ -2,12 +2,16 @@
 
 <project-detail ng-repeat="project in projects.list | orderBy:'id'" project="project" on-update="projects.editProject(project)" on-delete="projects.deleteProject(project)"></project-detail>
 
+<div ng-if="projects.errors" class="alert alert-danger" role="alert">
+  {{ projects.errors.message || projects.errors }}
+</div>
+
 <form ng-submit="projects.addProject(projects.newProject)">
   <div class="form-group">
     <input type="text" class="form-control rounded-0" ng-model="projects.newProject.name" placeholder="Enter Project Name ..." required>
   </div>
   <div class="form-group" ng-if="projects.newProject.name">
     <button class="btn btn-primary" type="submit">Create Project</button>
-    <button class="btn btn-ligth" type="button" ng-click="projects.newProject.name = ''">Cancel</button>
+    <button class="btn btn-ligth" type="button" ng-click="projects.reset()">Cancel</button>
   </div>
 </form>

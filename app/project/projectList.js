@@ -19,11 +19,11 @@
     var vm = this;
     vm.list = [];
     vm.newProject = {};
-    vm.errors = {};
 
     vm.addProject = addProject;
     vm.editProject = editProject;
     vm.deleteProject = deleteProject;
+    vm.reset = reset;
 
     ////////////////
 
@@ -38,7 +38,7 @@
         .then(function(response) {
           vm.list.push(response.data);
           vm.newProject = {};
-          vm.errors = {};
+          vm.errors = null;
         })
         .catch(function(response) {
           vm.errors = response.data;
@@ -48,11 +48,11 @@
     function editProject(project) {
       return projectService.update(project)
         .then(function() {
-          vm.errors = {};
+          vm.errors = null;
         })
-        .catch(function(response) {
+        /*.catch(function(response) {
           vm.errors = response.data;
-        });
+        })*/;
     }
 
     function deleteProject(project) {
@@ -63,6 +63,11 @@
         .catch(function(response) {
           vm.errors = response.data;
         });
+    }
+
+    function reset() {
+      vm.newProject = {};
+      vm.errors = null;
     }
   }
 })(window.angular);

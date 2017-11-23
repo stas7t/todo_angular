@@ -43,14 +43,20 @@
 
     vm.save = function() {
       //vm.update('name', vm.project.name);
-      vm.projectCopy.name = vm.project.name;
-      vm.editMode = !vm.editMode;
-      vm.onUpdate(vm.project);
+      vm.onUpdate(vm.project)
+        .then(function() {
+          vm.projectCopy.name = vm.project.name;
+          vm.editMode = !vm.editMode;
+        })
+        .catch(function(response) {
+          vm.errors = response.data;
+        });
     };
 
     vm.reset = function() {
       vm.project.name = vm.projectCopy.name;
       vm.editMode = !vm.editMode;
+      vm.errors = null;
     };
 
     vm.delete = function() {

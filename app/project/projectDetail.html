@@ -18,6 +18,10 @@
     <task-list project="projectDetail.project"></task-list>
   </div>
 
+  <div ng-if="projectDetail.errors" class="alert alert-danger" role="alert">
+    {{ projectDetail.errors.message || projectDetail.errors }}
+  </div>
+
   <form ng-switch-when="true" ng-submit="projectDetail.save()">
     <div class="form-group">
       <input type="text" class="form-control rounded-0" ng-model="projectDetail.project.name" autofocus required>
