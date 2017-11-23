@@ -1,23 +1,27 @@
 {
   "name": "angular-todo",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "ToDo List: Rails API + Angilar client. Final task",
+  "main": "server.js",
+  "repository": "https://github.com/stas7t/todo_angular",
   "scripts": {
-    "start": "http-server -a localhost -p 8080 -c-1",
+    "dev": "http-server -a localhost -p 8080 -c-1",
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "bundle": "webpack"
   },
   "keywords": [],
-  "author": "",
+  "author": "stas7t",
   "license": "ISC",
   "devDependencies": {
     "angular": "^1.6.6",
-    "webpack": "^3.8.1"
+    "webpack": "^3.8.1",
+    "http-server": "^0.10.0"
   },
   "dependencies": {
+    "angular": "^1.6.6",
     "angular-ui-router": "^0.4.3",
-    "http-server": "^0.10.0",
+    "express": "^4.16.2",
     "moment": "^2.19.2"
   }
 }
