@@ -11,7 +11,7 @@
     // Usage:
     // <div loading > ... loading animation ... </div>
     // Creates:
-    //
+    // loading animation
 
     var directive = {
       link: link,
@@ -21,7 +21,6 @@
     
     function link(scope, element, attrs) {
       scope.isLoading = function () {
-        console.log($http.pendingRequests);
         return $http.pendingRequests.length > 0;
       };
 
