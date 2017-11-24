@@ -57,6 +57,7 @@
     function editTask(task) {
       return taskService.update(task)
         .then(function() {
+          vm.getTasks();
           vm.errors = {};
         })
         .catch(function(response) {

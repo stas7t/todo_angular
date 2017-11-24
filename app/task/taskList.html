@@ -1,4 +1,4 @@
-<task-detail ng-repeat="task in tasks.list | orderBy:'id'" task="task" on-update="tasks.editTask(task, prop, value)" on-delete="tasks.deleteTask(task)"></task-detail>
+<task-detail ng-repeat="task in tasks.list | orderBy:'position'" task="task" on-update="tasks.editTask(task, prop, value)" on-delete="tasks.deleteTask(task)"></task-detail>
 
 <form ng-submit="tasks.addTask(tasks.newTask)">
   <div class="form-group mt-minus-1">

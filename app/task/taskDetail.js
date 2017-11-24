@@ -89,6 +89,11 @@
       return moment().diff(vm.date, 'hours') >= 0;
     };
 
+    vm.move = function (direction) {
+      vm.task.move = direction;
+      vm.onUpdate(vm.task);
+    }
+
     vm.save = function() {
       vm.taskCopy.name = vm.task.name;
       vm.editMode = !vm.editMode;
