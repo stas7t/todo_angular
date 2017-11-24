@@ -22,7 +22,6 @@
   function CommentFormController($scope, commentService) {
     var vm = this;
     vm.newComment = {};
-    vm.errors = {};
 
     vm.addComment = addComment;
 
@@ -33,7 +32,7 @@
         .then(function(response) {
           vm.comments.push(response.data);
           vm.newComment = {};
-          vm.errors = {};
+          vm.errors = null;
         })
         .catch(function(response) {
           vm.errors = response.data;

@@ -30,7 +30,10 @@
     vm.$onInit = function() {
       // Make a copy of the initial value to be able to reset it later
       vm.taskCopy = {'name': vm.task.name, 'deadline': vm.task.deadline};
+      vm.initDateTime();
+    };
 
+    vm.initDateTime = function () {
       if (vm.task.deadline) {
         vm.date = new Date(moment.utc(vm.task.deadline.date));
         vm.time = new Date(moment.utc(vm.task.deadline.time));
@@ -107,8 +110,7 @@
         vm.editMode = !vm.editMode;
         break;
       case 'deadline':
-        vm.task.deadline = vm.taskCopy.deadline;
-        vm.deadlineMode = !vm.deadlineMode;
+        vm.initDateTime();
         break;
       default:
         break;

@@ -75,9 +75,9 @@ div.task:hover > div.task-actions {
   margin-left: 25%;
   margin-top: -25%;
 
-  -webkit-box-shadow: 5px 5px 18px 5px rgba(189,185,189,0.86);
-  -moz-box-shadow: 5px 5px 18px 5px rgba(189,185,189,0.86);
-  box-shadow: 5px 5px 18px 5px rgba(189,185,189,0.86);
+  -webkit-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.5);
+  -moz-box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 5px 1px rgba(0,0,0,0.5);
 }
 
 .add-file {

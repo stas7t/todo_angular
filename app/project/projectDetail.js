@@ -47,6 +47,7 @@
         .then(function() {
           vm.projectCopy.name = vm.project.name;
           vm.editMode = !vm.editMode;
+          vm.errors = null;
         })
         .catch(function(response) {
           vm.errors = response.data;

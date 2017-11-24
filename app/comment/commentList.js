@@ -22,7 +22,6 @@
     var vm = this;
     vm.list = [];
     vm.newComment = {};
-    vm.errors = {};
 
     vm.addComment = addComment;
     vm.editComment = editComment;
@@ -34,6 +33,9 @@
       return commentService.get(vm.task.project_id, vm.task.id)
         .then(function(response) {
           vm.list = response.data;
+        })
+        .catch(function(response) {
+          vm.errors = response.data;
         });
     };
 
@@ -42,9 +44,10 @@
         .then(function(response) {
           vm.list.push(response.data);
           vm.newComment = {};
-          vm.errors = {};
+          vm.errors = null;
         })
         .catch(function(response) {
+          console.log(response.data)
           vm.errors = response.data;
         });
     }
@@ -52,7 +55,7 @@
     function editComment(comment) {
       return commentService.update(vm.task.project_id, vm.task.id, comment)
         .then(function() {
-          vm.errors = {};
+          vm.errors = null;
         })
         .catch(function(response) {
           vm.errors = response.data;

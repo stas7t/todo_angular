@@ -22,7 +22,7 @@
       <div class="position-absolute deadline-form" ng-if="taskDetail.deadlineMode">
           <div class="modal-header">
             <h5 class="modal-title">Deadline</h5>
-            <button type="button" class="close" ng-click="taskDetail.reset('deadline')">
+            <button type="button" class="close" ng-click="taskDetail.reset('deadline'); taskDetail.deadlineMode = !taskDetail.deadlineMode;">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
