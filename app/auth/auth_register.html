@@ -1,6 +1,9 @@
 <div ng-controller="AuthController as auth">
-  <div ng-if="auth.error" class="alert alert-danger" role="alert">
-    {{ auth.error }}
+  <div ng-if="auth.errors" class="alert alert-danger" role="alert">
+    <span ng-if="auth.errors.length == 1"> {{auth.errors[0]}} </span>
+    <ul ng-if="auth.errors.length > 1">
+      <li ng-repeat="error in auth.errors"> {{ error }} </li>
+    </ul>
   </div>
   <h4>Sign Up</h4>
   <form ng-submit="auth.register(auth.user)">

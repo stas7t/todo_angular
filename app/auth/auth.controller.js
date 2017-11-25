@@ -26,7 +26,23 @@
           $state.go('todo_list');
         })
         .catch(function(response) {
-          vm.error = response.data;
+          //vm.error = response.data;
+          vm.errors = [];
+          for (var key in response.data) {
+            // skip loop if the property is from prototype
+            if (!response.data.hasOwnProperty(key)) continue;
+            switch (key) {
+            case 'password':
+              vm.errors.push('Password does not meet minimal requirements. The length should be 8 characters, alphanumeric.');
+              break;
+            case 'password_confirmation':
+              vm.errors.push('Password and Confirm password fields doesn\'t match.');
+              break;
+            default:
+              vm.errors.push(response.data[key].join(' '));
+              break;
+            }
+          }
         });
     }
 
