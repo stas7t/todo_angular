@@ -30,6 +30,7 @@
     vm.$onInit = function() {
       // Make a copy of the initial value to be able to reset it later
       vm.taskCopy = {'name': vm.task.name, 'deadline': vm.task.deadline};
+      vm.commentsCount = vm.task.comments.length || 0;
       vm.initDateTime();
     };
 
@@ -88,6 +89,25 @@
       }
     };
 
+    vm.updateCommentsCount = function (operator) {
+      console.log(operator);
+      switch (operator) {
+      case '+':
+        vm.commentsCount += 1;
+        break;
+      case '-':
+        vm.commentsCount -= 1;
+        break;
+      default:
+        false;
+        break;
+      }
+
+      /*if (vm.task.comments && vm.task.comments.length > 0) {
+        return vm.task.comments.length;
+      }*/
+    };
+
     vm.deadlineAlert = function () {
       return moment().diff(vm.date, 'hours') >= 0;
     };
@@ -95,7 +115,7 @@
     vm.move = function (direction) {
       vm.task.move = direction;
       vm.onUpdate(vm.task);
-    }
+    };
 
     vm.save = function() {
       vm.taskCopy.name = vm.task.name;

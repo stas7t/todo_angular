@@ -13,7 +13,9 @@
       controller: CommentListController,
       controllerAs: 'comments',
       bindings: {
-        task: '<'
+        task: '<',
+        onAddComment: '&',
+        onDeleteComment: '&'
       },
     });
 
@@ -24,7 +26,6 @@
     vm.newComment = {};
 
     vm.addComment = addComment;
-    vm.editComment = editComment;
     vm.deleteComment = deleteComment;
 
     ////////////////
@@ -45,17 +46,7 @@
           vm.list.push(response.data);
           vm.newComment = {};
           vm.errors = null;
-        })
-        .catch(function(response) {
-          console.log(response.data)
-          vm.errors = response.data;
-        });
-    }
-
-    function editComment(comment) {
-      return commentService.update(vm.task.project_id, vm.task.id, comment)
-        .then(function() {
-          vm.errors = null;
+          vm.onAddComment();
         })
         .catch(function(response) {
           vm.errors = response.data;
@@ -66,6 +57,7 @@
       return commentService.destroy(comment)
         .then(function() {
           vm.list.splice(vm.list.indexOf(comment), 1);
+          vm.onDeleteComment();
         })
         .catch(function(response) {
           vm.errors = response.data;

@@ -48,7 +48,7 @@
 
     </div>
     <div class="p-2 task-actions">
-      <span> {{ taskDetail.commentsNumber() }} </span>
+      <span ng-if="taskDetail.commentsCount > 0"> {{ taskDetail.commentsCount }} </span>
       <a href="" data-toggle="modal" data-target="#commentsModal-{{taskDetail.task.id}}"><i class="fa fa-comment fa-lg" aria-hidden="true"></i></a>
       <a href="" ng-click="taskDetail.edit('deadline')"><i class="fa fa-clock-o fa-lg" aria-hidden="true"></i></a>
       <a href="" ng-click="taskDetail.edit('name')"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
@@ -77,7 +77,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <comment-list task="taskDetail.task"></comment-list>
+      <comment-list task="taskDetail.task" on-add-comment="taskDetail.updateCommentsCount('+')" on-delete-comment="taskDetail.updateCommentsCount('-')"></comment-list>
     </div>
   </div>
 </div>

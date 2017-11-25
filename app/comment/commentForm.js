@@ -14,7 +14,8 @@
       controllerAs: 'commentForm',
       bindings: {
         task: '<',
-        comments: '<'
+        comments: '<',
+        onAddComment: '&',
       },
     });
 
@@ -33,6 +34,7 @@
           vm.comments.push(response.data);
           vm.newComment = {};
           vm.errors = null;
+          vm.onAddComment();
         })
         .catch(function(response) {
           vm.errors = response.data;
