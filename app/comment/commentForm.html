@@ -1,9 +1,13 @@
 <div ng-if="commentForm.errors" class="alert alert-danger" role="alert">
-  {{ commentForm.errors }}
+  <span ng-if="commentForm.errors.length == 1"> {{commentForm.errors[0]}} </span>
+  <ul ng-if="commentForm.errors.length > 1">
+    <li ng-repeat="error in commentForm.errors"> {{ error }} </li>
+  </ul>
 </div>
+
 <form ng-submit="commentForm.addComment(commentForm.newComment)">
   <div class="form-group position-relative">
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ng-model="commentForm.newComment.text" required></textarea>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ng-model="commentForm.newComment.text" required minlength="10"></textarea>
     <a href="" class="add-file" ng-click="commentForm.addFile()"><i class="fa fa-paperclip fa-lg" aria-hidden="true"></i></a>
   </div>
   <img ng-if="commentForm.newComment.file" ng-src="{{commentForm.newComment.file}}" alt="image-preview" height="100" width="100">
@@ -12,6 +16,7 @@
     <button class="btn btn-ligth" type="button" data-dismiss="modal">Cancel</button>
   </div>
 </form>
+
 <div loading class="text-center pt-5">
   <span><i class="fa fa-refresh fa-spin fa-2x fa-fw"></i></span>
 </div>

@@ -3,7 +3,7 @@
 <project-detail ng-repeat="project in projects.list | orderBy:'id'" project="project" on-update="projects.editProject(project)" on-delete="projects.deleteProject(project)"></project-detail>
 
 <div ng-if="projects.errors" class="alert alert-danger" role="alert">
-  {{ projects.errors.message || projects.errors }}
+  {{ projects.errors.message }}
 </div>
 
 <form ng-submit="projects.addProject(projects.newProject)">

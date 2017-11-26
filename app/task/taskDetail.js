@@ -30,8 +30,12 @@
     vm.$onInit = function() {
       // Make a copy of the initial value to be able to reset it later
       vm.taskCopy = {'name': vm.task.name, 'deadline': vm.task.deadline};
-      vm.commentsCount = vm.task.comments.length || 0;
       vm.initDateTime();
+      if (vm.task.comments) {
+        vm.commentsCount = vm.task.comments.length;
+      } else {
+        vm.commentsCount = 0;
+      }
     };
 
     vm.initDateTime = function () {
@@ -90,7 +94,6 @@
     };
 
     vm.updateCommentsCount = function (operator) {
-      console.log(operator);
       switch (operator) {
       case '+':
         vm.commentsCount += 1;

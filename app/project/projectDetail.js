@@ -13,7 +13,7 @@
       controller: ProjectDetailController,
       controllerAs: 'projectDetail',
       bindings: {
-        project: '=',
+        project: '<',
         onDelete: '&',
         onUpdate: '&'
       },
@@ -29,7 +29,6 @@
 
     vm.$onInit = function() {
       // Make a copy of the initial value to be able to reset it later
-      //vm.fieldValueCopy = vm.fieldValue;
       vm.projectCopy = {'name': vm.project.name};
     };
 
@@ -42,7 +41,6 @@
     };
 
     vm.save = function() {
-      //vm.update('name', vm.project.name);
       vm.onUpdate(vm.project)
         .then(function() {
           vm.projectCopy.name = vm.project.name;
@@ -63,10 +61,5 @@
     vm.delete = function() {
       vm.onDelete(vm.project);
     };
-
-    /*vm.update = function(prop, value) {
-      vm.project[prop] = value;
-      vm.onUpdate(vm.project);
-    };*/
   }
 })(window.angular);

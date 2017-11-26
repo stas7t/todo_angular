@@ -37,7 +37,18 @@
           vm.onAddComment();
         })
         .catch(function(response) {
-          vm.errors = response.data;
+          vm.errors = [];
+          for (var key in response.data) {
+            // skip loop if the property is from prototype
+            if (!response.data.hasOwnProperty(key)) continue;
+
+            var message = response.data[key].join(' ');
+            if (message.includes('file size')) {
+              vm.errors.push('An uploaded file is too large. The sie shouldn\'t exeed 10 MB');
+            } else if (message.includes('You are not allowed to upload')) {
+              vm.errors.push('Wrong format. You can upload a *.jpg or *.png formats files only');
+            } else { vm.errors.push(message); }
+          }
         });
     }
 

@@ -49,10 +49,7 @@
       return projectService.update(project)
         .then(function() {
           vm.errors = null;
-        })
-        /*.catch(function(response) {
-          vm.errors = response.data;
-        })*/;
+        });
     }
 
     function deleteProject(project) {
