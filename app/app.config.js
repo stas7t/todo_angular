@@ -20,7 +20,7 @@
       })
       .state('login', {
         url: '/login',
-        templateUrl: '/app/auth/auth_login.html',
+        template: '<log-in></log-in>',
         onEnter: ['$state', 'auth', function($state, auth) {
           if ( auth.isLoggedIn() ) {
             $state.go('todo_list');
@@ -29,7 +29,7 @@
       })
       .state('register', {
         url: '/register',
-        templateUrl: '/app/auth/auth_register.html',
+        template: '<register></register>',
         onEnter: ['$state', 'auth', function($state, auth) {
           if ( auth.isLoggedIn() ) {
             $state.go('todo_list');

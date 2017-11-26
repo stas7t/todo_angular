@@ -49,7 +49,6 @@
       return $http.post( BASE_URL + 'auth/register', user)
         .then(function(response) {
           saveToken(response.data.auth_token);
-          console.info(response.data.message);
         });
     }
 
@@ -57,7 +56,6 @@
       return $http.post( BASE_URL + 'auth/login', user)
         .then(function(response) {
           saveToken(response.data.auth_token);
-          console.info(response.data.message);
         });
     }
 

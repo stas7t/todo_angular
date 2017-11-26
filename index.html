@@ -18,7 +18,9 @@
     <script src="app/app.module.js"></script>
     <script src="app/app.config.js"></script>
     <script src="app/app.constants.js"></script>
-    <script src="app/auth/auth.controller.js"></script>
+    <script src="app/auth/authLogIn.js"></script>
+    <script src="app/auth/authLogOut.js"></script>
+    <script src="app/auth/authRegister.js"></script>
     <script src="app/auth/auth.service.js"></script>
     <script src="app/project/projectList.js"></script>
     <script src="app/project/projectDetail.js"></script>
@@ -36,7 +38,7 @@
   </head>
   <body ng-app="app">
     <header>
-      <nav class="navbar navbar-light justify-content-between" ng-controller="AuthController as auth">
+      <nav class="navbar navbar-light justify-content-between">
         <a class="navbar-brand" href="">
           <img src="https://s3.eu-central-1.amazonaws.com/stas7t-todo-api/logo/list.png" alt="logo-image" height="50" width="50">
         </a>
@@ -44,7 +46,7 @@
           Simple ToDO List
         </span>
         <span>
-          <a href="" class="pull-right text-secondary" ng-click="auth.logOut()" ng-if="auth.isLoggedIn()"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></a>
+          <log-out></log-out>
         </span>
       </nav>
     </header>
