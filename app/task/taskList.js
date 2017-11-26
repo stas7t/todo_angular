@@ -2,7 +2,7 @@
   'use strict';
 
   // Usage:
-  // <task-list project="..."></task-list>
+  // <task-list project="..." on-all-completed="..."></task-list>
   // Creates:
   // List of tasks
 
@@ -13,7 +13,8 @@
       controller: TaskListController,
       controllerAs: 'tasks',
       bindings: {
-        project: '<'
+        project: '<',
+        onAllCompleted: '&'
       },
     });
 
@@ -59,6 +60,9 @@
         .then(function() {
           vm.getTasks();
           vm.errors = {};
+          if (isAllCompleted()) {
+            vm.onAllCompleted();
+          }
         })
         .catch(function(response) {
           vm.errors = response.data;
@@ -73,6 +77,19 @@
         .catch(function(response) {
           vm.errors = response.data;
         });
+    }
+
+    // Private
+    function isTaskUncompleted(task) {
+      return task.completed === false;
+    }
+
+    function isAllCompleted() {
+      if (vm.list.find(isTaskUncompleted)) {
+        return false;
+      } else {
+        return true;
+      } 
     }
   }
 })(window.angular);

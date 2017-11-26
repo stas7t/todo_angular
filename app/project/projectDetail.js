@@ -30,6 +30,11 @@
     vm.$onInit = function() {
       // Make a copy of the initial value to be able to reset it later
       vm.projectCopy = {'name': vm.project.name};
+      vm.allCompleted = false;
+    };
+
+    vm.showAllCompletedMessage = function () {
+      vm.allCompleted = true;
     };
 
     vm.toggleTasksView = function () {

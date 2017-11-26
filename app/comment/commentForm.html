@@ -1,4 +1,7 @@
 <div ng-if="commentForm.errors" class="alert alert-danger" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
   <span ng-if="commentForm.errors.length == 1"> {{commentForm.errors[0]}} </span>
   <ul ng-if="commentForm.errors.length > 1">
     <li ng-repeat="error in commentForm.errors"> {{ error }} </li>

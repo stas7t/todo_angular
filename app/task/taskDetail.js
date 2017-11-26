@@ -143,5 +143,10 @@
     vm.delete = function() {
       vm.onDelete(vm.task);
     };
+
+    vm.update = function(prop, value) {
+      vm.task[prop] = value;
+      vm.onUpdate(vm.task, prop, value);
+    };
   }
 })(window.angular);

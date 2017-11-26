@@ -4,6 +4,9 @@
 
 <div ng-if="projects.errors" class="alert alert-danger" role="alert">
   {{ projects.errors.message }}
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
 
 <form ng-submit="projects.addProject(projects.newProject)">
