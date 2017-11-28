@@ -41,7 +41,7 @@
               vm.errors.push('Password and Confirm password fields doesn\'t match.');
               break;
             default:
-              vm.errors.push(response.data[key].join(' '));
+              vm.errors.push(response.data[key]);
               break;
             }
           }
