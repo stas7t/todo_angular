@@ -1,0 +1,65 @@
+<section class="mb-2" ng-switch="projectDetail.editMode">
+  <div ng-if="projectDetail.allCompleted" class="alert alert-success mb-1" role="alert">
+      <strong>Well done!</strong> All tasks are completed.
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+  <div class="container " ng-switch-default>
+    <div class="row project" ng-class="{'project-show-tasks': projectDetail.showTasks}">
+      <div class="col py-2" >
+        <a data-toggle="collapse" href="#collapseTasks-{{projectDetail.project.id}}" aria-expanded="true" aria-controls="collapseTasks-{{ projectDetail.project.id }}" class="nodecor">
+          <i class="fa fa-caret-right fa-lg" ng-class="{'fa-rotate-90': projectDetail.showTasks}" ng-click="projectDetail.toggleTasksView()" aria-hidden="true"></i>
+          <span class="pl-2 text-secondary font-weight-bold" ng-click="projectDetail.toggleTasksView()">{{ projectDetail.project.name }}</span>
+        </a>
+      </div>
+      <div class="p-2 project-actions">
+        <a href="" ng-click="projectDetail.edit()"><i class="fa fa-pencil fa-lg" aria-hidden="true"></i></a>
+        <a href="" data-toggle="modal" data-target="#confirmDeletionModal-{{projectDetail.project.id}}"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div id="collapseTasks-{{ projectDetail.project.id }}" class="collapse" ng-switch-default>
+    <task-list project="projectDetail.project" on-all-completed="projectDetail.showAllCompletedMessage()"></task-list>
+  </div>
+
+  <div ng-if="projectDetail.errors" class="alert alert-danger" role="alert">
+    {{ projectDetail.errors.message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <form ng-switch-when="true" ng-submit="projectDetail.save()">
+    <div class="form-group">
+      <input type="text" class="form-control rounded-0" ng-model="projectDetail.project.name" autofocus required>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" type="submit">Save</button>
+      <button class="btn btn-light" type="button" ng-click="projectDetail.reset()">Cancel</button>
+    </div>
+  </form>
+</section>
+
+<!-- Modal -->
+<div class="modal" id="confirmDeletionModal-{{projectDetail.project.id}}" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm deletion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete this item?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" ng-click="projectDetail.delete()" data-dismiss="modal">Delete</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

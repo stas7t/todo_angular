@@ -1,0 +1,12 @@
+<section>
+  <div class="row mx-0">
+    <div class="col py-2">
+      <span class="text-smaller text-secondary pr-2">{{commentDetail.comment.created_at | date: "dd/MM/yyyy"}}</span>
+      <a href="" ng-click="commentDetail.delete()"><i class="fa fa-trash-o" aria-hidden="true"></i></a><br>
+      <span>{{commentDetail.comment.text}}</span><br>
+      <a href="{{commentDetail.comment.file.url}}" target="_blank">
+        <img class="mw-100" ng-if="commentDetail.comment.file.url" ng-src="{{commentDetail.comment.file.url}}" alt="attachment">
+      </a>
+    </div>
+  </div>
+</section>
