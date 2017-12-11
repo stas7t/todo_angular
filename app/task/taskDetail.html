@@ -16,7 +16,7 @@
         <span ng-class="{'task-completed': taskDetail.task.completed}">{{ taskDetail.task.name }}</span>
       </div>
       <div class="deadline text-smaller" ng-class="{'deadline-expired': taskDetail.deadlineAlert()}" ng-hide="taskDetail.task.completed" ng-if="taskDetail.task.deadline">
-        {{ taskDetail.task.deadline.date | date: "dd/MM/yyyy" }} {{ taskDetail.task.deadline.time | date: "HH:mm" }}
+        {{ taskDetail.taskCopy.deadline | date: "dd/MM/yyyy HH:mm" }}
       </div>
 
       <div class="position-absolute deadline-form" ng-if="taskDetail.deadlineMode">
