@@ -19,8 +19,8 @@
       },
     });
 
-  TaskDetailController.$inject = ['moment', 'taskService', 'deadlineService'];
-  function TaskDetailController(moment, taskService, deadlineService) {
+  TaskDetailController.$inject = ['moment', 'taskService'];
+  function TaskDetailController(moment, taskService) {
     var vm = this;
     vm.editMode = false;
     vm.deadlineMode = false;
@@ -40,11 +40,11 @@
 
     vm.initDateTime = function () {
       if (vm.task.deadline) {
-        vm.date = new Date(moment.utc(vm.task.deadline.date));
-        vm.time = new Date(moment.utc(vm.task.deadline.time));
+        vm.date = new Date(moment.utc(vm.task.deadline));
+        vm.time = new Date(moment.utc(vm.task.deadline).seconds(0));
       } else {
         vm.date = new Date( moment() );
-        vm.time = new Date( moment({hour: 12, minute: 0}) );
+        vm.time = new Date( moment({hour: 12, minute: 0, second: 0}) );
       }
     };
 
@@ -62,18 +62,10 @@
     };
 
     vm.setDeadline = function () {
-      if (vm.task.deadline) {
-        deadlineService.update( {'id': vm.task.deadline.id, 'date': vm.date, 'time': vm.time} )
-          .then(function() {
-            vm.getTask();
-          });
-      } else {
-        deadlineService.create(vm.task.project_id, vm.task.id, {'date': vm.date, 'time': vm.time})
-          .then(function() {
-            vm.getTask();
-          });
-      }
       vm.deadlineMode = !vm.deadlineMode;
+      var newTime = moment.utc(vm.date).format('YYYY-MM-DD') + ' ' + moment.utc(vm.time).seconds(0).format('HH:mm:ss');
+      vm.task.deadline = moment.utc(newTime);
+      vm.onUpdate(vm.task);
     };
 
     vm.getTask = function () {
@@ -105,10 +97,6 @@
         false;
         break;
       }
-
-      /*if (vm.task.comments && vm.task.comments.length > 0) {
-        return vm.task.comments.length;
-      }*/
     };
 
     vm.deadlineAlert = function () {
